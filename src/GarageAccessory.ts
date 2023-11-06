@@ -139,13 +139,13 @@ export class GarageOpenerPlatformAccessory {
   private fetchCurrentState(callback?: Function): any {
     const isClosedUrl =
       this.url + 'devices/' + this.deviceId + '/' + this.variableName + '?access_token=' + this.accessToken;
-    // this.platform.log.debug('URL: ', isClosedUrl);
+     this.platform.log.debug('URL: ', isClosedUrl);
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), this.requestTimeout);
     fetch(isClosedUrl, { signal: controller.signal })
       .then((response) => {
         clearTimeout(id);
-        // this.platform.log.debug('response', response);
+         this.platform.log.debug('response', response);
         // indicates whether the response is successful (status code 200-299) or not
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
